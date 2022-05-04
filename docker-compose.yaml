@@ -1,0 +1,27 @@
+version: "3.9"
+  
+services:
+  webServerTecnologie:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    #  - "443:443"
+    image: tecnologie_web-server
+    stdin_open: true
+    tty: true
+    privileged: true
+    networks:
+      netServer_ext:
+        ipv4_address: 192.168.2.80
+   
+
+
+networks:
+  netServer_ext:
+   driver: bridge
+   ipam:
+    driver: default
+    config:
+     - subnet: 192.168.2.0/24
